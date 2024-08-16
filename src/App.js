@@ -26,7 +26,7 @@ function EatNSplit() {
         <FormAddFriend />
         <Button>Add Friend</Button>
       </div>
-      <Bill />
+      <FormSplitBill />
     </div>
   );
 }
@@ -83,6 +83,26 @@ const FormAddFriend = () => {
       <label>Image Url</label>
       <input type="text"></input>
       <Button>Add</Button>
+    </form>
+  );
+};
+
+const FormSplitBill = () => {
+  return (
+    <form className="form-split-bill">
+      <h2>Split a bill with (friend)</h2>
+      <label>Bill Value</label>
+      <input type="text"></input>
+      <label>Your Expense</label>
+      <input type="text"></input>
+      <label>Friend Expense</label>
+      <input type="text"></input>
+      <label type="text">Who is paying the bill?</label>
+      <select>
+        <option value={"you"}>You</option>
+        <option value={"friend"}>Friend</option>
+      </select>
+      <Button>Split Bill</Button>
     </form>
   );
 };
