@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const initialFriends = [
   {
     id: 118836,
@@ -19,12 +21,19 @@ const initialFriends = [
   },
 ];
 function EatNSplit() {
+  const [showAddFriend, setShowAddFriend] = useState(false);
+
+  const onAddFriend = () => {
+    setShowAddFriend((show) => !show);
+  };
   return (
     <div className="eatnsplit">
       <div className="sidebar">
         <FriendsList />
-        <FormAddFriend />
-        <Button>Add Friend</Button>
+        {showAddFriend && <FormAddFriend />}
+        <Button onClick={onAddFriend}>
+          {showAddFriend ? "Close" : "Add Friend"}
+        </Button>
       </div>
       <FormSplitBill />
     </div>
@@ -71,17 +80,46 @@ const Bill = () => {
   return <div></div>;
 };
 
-const Button = ({ children }) => {
-  return <button className="button">{children}</button>;
+const Button = ({ onClick, children }) => {
+  return (
+    <button onClick={onClick} className="button">
+      {children}
+    </button>
+  );
 };
 const FormAddFriend = () => {
+  const [friendName, setFriendName] = useState("");
+  const [friendImg, setFriendImg] = useState("https://i.pravatar.cc/48");
+
+  const handleAddFriend = (e) => {
+    e.preventDefault();
+    if (!friendImg || !friendName) return;
+    const id = crypto.randomUUID();
+    const newFriend = {
+      id,
+      friendName,
+      friendImg: `${friendImg} ?= ${id}`,
+      balance: 0,
+    };
+    console.log(newFriend);
+    setFriendImg("");
+    setFriendName("https://i.pravatar.cc/48");
+  };
   return (
-    <form className="form-add-friend">
+    <form className="form-add-friend" onSubmit={handleAddFriend}>
       <label>Friend Name</label>
-      <input type="text"></input>
+      <input
+        type="text"
+        value={friendName}
+        onChange={(e) => setFriendName(e.target.value)}
+      ></input>
 
       <label>Image Url</label>
-      <input type="text"></input>
+      <input
+        type="text"
+        value={friendImg}
+        onChange={(e) => setFriendImg(e.target.value)}
+      ></input>
       <Button>Add</Button>
     </form>
   );
