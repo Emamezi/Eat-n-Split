@@ -122,6 +122,13 @@ input {
   border-radius: 4px;
   transition: 0.3s;
 }
+
+input:focus,
+select:focus {
+  outline: none;
+  border: 1px solid var(--color-dark);
+}
+
 form .button {
   grid-column: 2;
   margin-top: 0.6rem;
