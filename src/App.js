@@ -28,6 +28,7 @@ function EatNSplit() {
   const handleShowAddFriends = () => {
     setShowAddFriend((show) => !show);
   };
+
   const handleAddFriends = (friend) => {
     setFriends((friends) => [...friends, friend]);
     setShowAddFriend(false);
@@ -119,6 +120,7 @@ const Friend = ({ friend, onSelectFriend, selectedFriend }) => {
   );
 };
 
+//reusable button
 const Button = ({ onClick, children }) => {
   return (
     <button onClick={onClick} className="button">
@@ -126,6 +128,7 @@ const Button = ({ onClick, children }) => {
     </button>
   );
 };
+
 const FormAddFriend = ({ onAddFriend }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("https://i.pravatar.cc/48");
